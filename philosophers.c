@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamorcil <gamorcil@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: gamorcil <gamorcil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 11:47:34 by gamorcil          #+#    #+#             */
-/*   Updated: 2025/12/07 11:48:28 by gamorcil         ###   ########.fr       */
+/*   Updated: 2025/12/09 20:07:56 by gamorcil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	cleanup_table(t_table *table)
 
 	if (!table)
 		return ;
-	
-	// Destruir mutexes de tenedores
 	if (table->forks)
 	{
 		i = 0;
@@ -37,15 +35,21 @@ void	cleanup_table(t_table *table)
 		free(table->forks);
 		table->forks = NULL;
 	}
-	pthread_mutex_destroy(&table->write_mutex);
-	pthread_mutex_destroy(&table->meal_mutex);
-	pthread_mutex_destroy(&table->death_mutex);
+	destroy_mutexes(table);
 	if (table->philosophers)
 	{
 		free(table->philosophers);
 		table->philosophers = NULL;
 	}
 }
+
+void	destroy_mutexes(t_table *table)
+{
+	pthread_mutex_destroy(&table->write_mutex);
+	pthread_mutex_destroy(&table->meal_mutex);
+	pthread_mutex_destroy(&table->death_mutex);
+}
+
 
 int	main(int argc, char **argv)
 {

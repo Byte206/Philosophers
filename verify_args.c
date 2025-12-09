@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamorcil <gamorcil@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: gamorcil <gamorcil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 11:51:18 by gamorcil          #+#    #+#             */
-/*   Updated: 2025/12/07 11:51:33 by gamorcil         ###   ########.fr       */
+/*   Updated: 2025/12/09 19:57:49 by gamorcil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static long	ft_atol(char *str)
 	return (result);
 }
 
-/* Verifica que el valor esté en rango válido de int positivo */
 static int	is_valid_int(char *str)
 {
 	long	value;
@@ -78,7 +77,6 @@ static int	is_valid_int(char *str)
 	return (1);
 }
 
-/* Función principal de verificación */
 int	verify_args(int argc, char **argv)
 {
 	int		i;

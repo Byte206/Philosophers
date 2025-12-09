@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamorcil <gamorcil@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: gamorcil <gamorcil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 11:35:39 by gamorcil          #+#    #+#             */
-/*   Updated: 2025/12/07 11:37:13 by gamorcil         ###   ########.fr       */
+/*   Updated: 2025/12/09 20:08:57 by gamorcil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_table
 int		init_table(t_table *table, int argc, char **argv);
 int		init_forks(t_table *table);
 int		init_philosophers(t_table *table);
+int		verify_args(int argc, char **argv);
 
 // Simulation
 void	start_simulation(t_table *table);
