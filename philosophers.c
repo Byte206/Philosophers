@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamorcil <gamorcil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: byte <byte@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 11:47:34 by gamorcil          #+#    #+#             */
-/*   Updated: 2025/12/09 20:07:56 by gamorcil         ###   ########.fr       */
+/*   Updated: 2025/12/09 20:58:01 by byte             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	destroy_mutexes(t_table *table)
 	pthread_mutex_destroy(&table->meal_mutex);
 	pthread_mutex_destroy(&table->death_mutex);
 }
-
 
 int	main(int argc, char **argv)
 {
