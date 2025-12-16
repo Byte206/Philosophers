@@ -6,11 +6,11 @@
 /*   By: gamorcil <gamorcil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 20:03:00 by gamorcil          #+#    #+#             */
-/*   Updated: 2025/12/09 20:27:45 by gamorcil         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:59:07 by gamorcil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philo.h"
 
 void	start_simulation(t_table *table)
 {

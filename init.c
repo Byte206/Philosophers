@@ -6,11 +6,11 @@
 /*   By: gamorcil <gamorcil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 19:57:21 by gamorcil          #+#    #+#             */
-/*   Updated: 2025/12/09 20:01:44 by gamorcil         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:58:48 by gamorcil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philo.h"
 
 static int	ft_atoi(char *str)
 {

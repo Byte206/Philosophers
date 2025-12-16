@@ -1,4 +1,16 @@
-#include "philosophers.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   verify_args.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gamorcil <gamorcil@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/16 15:57:06 by gamorcil          #+#    #+#             */
+/*   Updated: 2025/12/16 16:03:28 by gamorcil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philo.h"
 
 static int	ft_isdigit(char c)
 {
@@ -64,8 +76,9 @@ int	verify_args(int argc, char **argv)
 	long	num_philos;
 
 	if (argc != 5 && argc != 6)
-		return (error_exit("Usage: ./philo number_of_philo time_to_die time_to_eat time_to_sleep
-				 [number_of_times_each_philosopher_must_eat]"));
+		return (error_exit("Usage: ./philo number_of_philo time_to_die "
+				"time_to_eat time_to_sleep "
+				"[number_of_times_each_philosopher_must_eat]"));
 	i = 1;
 	while (i < argc)
 	{
