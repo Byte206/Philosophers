@@ -58,18 +58,19 @@ int	check_all_ate_enough(t_table *table)
 
 	if (table->target_meals == -1)
 		return (0);
+	pthread_mutex_lock(&table->meal_mutex);
 	i = 0;
 	all_ate = 1;
 	while (i < table->number_of_philosophers)
 	{
-		pthread_mutex_lock(&table->meal_mutex);
 		if (table->philosophers[i].meals_count < table->target_meals)
+		{
 			all_ate = 0;
-		pthread_mutex_unlock(&table->meal_mutex);
-		if (!all_ate)
 			break ;
+		}
 		i++;
 	}
+	pthread_mutex_unlock(&table->meal_mutex);
 	if (all_ate)
 	{
 		pthread_mutex_lock(&table->death_mutex);
