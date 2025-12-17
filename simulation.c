@@ -53,7 +53,11 @@ void	*philosopher_routine(void *arg)
 		if (simulation_should_stop(philo->table))
 			break ;
 		philo_sleep(philo);
+		if (simulation_should_stop(philo->table))
+			break ;
 		philo_think(philo);
+		if (simulation_should_stop(philo->table))
+			break ;
 	}
 	return (NULL);
 }
