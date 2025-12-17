@@ -14,9 +14,22 @@
 
 static void	take_forks(t_philosopher *philo)
 {
-	pthread_mutex_lock(&philo->left_fork->fork_mutex);
+	t_fork	*first;
+	t_fork	*second;
+
+	if (philo->left_fork->fork_id < philo->right_fork->fork_id)
+	{
+		first = philo->left_fork;
+		second = philo->right_fork;
+	}
+	else
+	{
+		first = philo->right_fork;
+		second = philo->left_fork;
+	}
+	pthread_mutex_lock(&first->fork_mutex);
 	print_status(philo, "has taken a fork");
-	pthread_mutex_lock(&philo->right_fork->fork_mutex);
+	pthread_mutex_lock(&second->fork_mutex);
 	print_status(philo, "has taken a fork");
 }
 
