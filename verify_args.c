@@ -6,7 +6,7 @@
 /*   By: gamorcil <gamorcil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:57:06 by gamorcil          #+#    #+#             */
-/*   Updated: 2025/12/16 16:03:28 by gamorcil         ###   ########.fr       */
+/*   Updated: 2025/12/17 20:27:35 by gamorcil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,7 @@ int	verify_args(int argc, char **argv)
 		return (error_exit("Number of philosophers must be between 1 and 200"));
 	if (ft_atol(argv[2]) == 0 || ft_atol(argv[3]) == 0 || ft_atol(argv[4]) == 0)
 		return (error_exit("Time values must be greater than 0"));
+	if (argc == 6 && ft_atol(argv[5]) == 0)
+		return (error_exit("Number of meals must be greater than 0"));
 	return (0);
 }
