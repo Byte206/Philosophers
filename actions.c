@@ -47,19 +47,13 @@ void	philo_eat(t_philosopher *philo)
 		return ;
 	pthread_mutex_lock(&philo->table->meal_mutex);
 	current_meals = philo->meals_count;
+	pthread_mutex_unlock(&philo->table->meal_mutex);
 	if (philo->table->target_meals != -1
 		&& current_meals >= philo->table->target_meals)
-	{
-		pthread_mutex_unlock(&philo->table->meal_mutex);
 		return ;
-	}
-	pthread_mutex_unlock(&philo->table->meal_mutex);
 	take_forks(philo);
 	if (simulation_should_stop(philo->table))
-	{
-		release_forks(philo);
-		return ;
-	}
+		return (release_forks(philo));
 	print_status(philo, "is eating");
 	pthread_mutex_lock(&philo->table->meal_mutex);
 	philo->last_meal_time = get_current_time();
