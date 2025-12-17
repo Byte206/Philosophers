@@ -25,7 +25,7 @@ long	time_since_start(t_table *table)
 	return (get_current_time() - table->sim_start_time);
 }
 
-void	precise_usleep(long microseconds)
+void	precise_usleep(long microseconds, t_table *table)
 {
 	long	start;
 	long	elapsed;
@@ -34,6 +34,8 @@ void	precise_usleep(long microseconds)
 	start = get_current_time();
 	while (1)
 	{
+		if (table && simulation_should_stop(table))
+			break ;
 		elapsed = get_current_time() - start;
 		remaining = microseconds - elapsed;
 		if (remaining <= 0)

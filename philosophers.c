@@ -6,7 +6,7 @@
 /*   By: gamorcil <gamorcil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 11:47:34 by gamorcil          #+#    #+#             */
-/*   Updated: 2025/12/16 15:57:56 by gamorcil         ###   ########.fr       */
+/*   Updated: 2025/12/17 23:00:04 by gamorcil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	main(int argc, char **argv)
 		return (error_exit("Failed to initialize philosophers"));
 	}
 	start_simulation(&table);
+	printf("\n[TIEMPO TOTAL] %ld ms desde el inicio de la simulación\n",
+		time_since_start(&table));
 	cleanup_table(&table);
 	return (0);
 }

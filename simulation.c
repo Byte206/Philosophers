@@ -6,7 +6,7 @@
 /*   By: gamorcil <gamorcil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 20:03:00 by gamorcil          #+#    #+#             */
-/*   Updated: 2025/12/16 15:59:07 by gamorcil         ###   ########.fr       */
+/*   Updated: 2025/12/17 22:55:53 by gamorcil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	*philosopher_routine(void *arg)
 
 	philo = (t_philosopher *)arg;
 	if (philo->philosopher_id % 2 == 0)
-		precise_usleep(philo->table->time_to_eat / 2);
+		precise_usleep(philo->table->time_to_eat / 2, philo->table);
 	while (!simulation_should_stop(philo->table))
 	{
 		if (simulation_should_stop(philo->table))
