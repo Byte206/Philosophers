@@ -57,10 +57,11 @@ void	philo_eat(t_philosopher *philo)
 	print_status(philo, "is eating");
 	pthread_mutex_lock(&philo->table->meal_mutex);
 	philo->last_meal_time = get_current_time();
-	//philo->meals_count++;
 	pthread_mutex_unlock(&philo->table->meal_mutex);
 	precise_usleep(philo->table->time_to_eat, philo->table);
+	pthread_mutex_lock(&philo->table->meal_mutex);
 	philo->meals_count++;
+	pthread_mutex_unlock(&philo->table->meal_mutex);
 	release_forks(philo);
 }
 
