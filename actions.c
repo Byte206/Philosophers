@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-static void	take_forks(t_philosopher *philo)
+static int	take_forks(t_philosopher *philo)
 {
 	t_fork	*first;
 	t_fork	*second;
@@ -28,9 +28,15 @@ static void	take_forks(t_philosopher *philo)
 		second = philo->left_fork;
 	}
 	pthread_mutex_lock(&first->fork_mutex);
+	if (simulation_should_stop(philo->table))
+	{
+		pthread_mutex_unlock(&first->fork_mutex);
+		return (0);
+	}
 	print_status(philo, "has taken a fork");
 	pthread_mutex_lock(&second->fork_mutex);
 	print_status(philo, "has taken a fork");
+	return (1);
 }
 
 static void	release_forks(t_philosopher *philo)
@@ -51,9 +57,8 @@ void	philo_eat(t_philosopher *philo)
 	if (philo->table->target_meals != -1
 		&& current_meals >= philo->table->target_meals)
 		return ;
-	take_forks(philo);
-	if (simulation_should_stop(philo->table))
-		return (release_forks(philo));
+	if (!take_forks(philo))
+		return ;
 	print_status(philo, "is eating");
 	pthread_mutex_lock(&philo->table->meal_mutex);
 	philo->last_meal_time = get_current_time();

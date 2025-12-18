@@ -35,7 +35,7 @@ int	check_philosopher_death(t_table *table)
 		current_time = get_current_time();
 		time_since_meal = current_time - table->philosophers[i].last_meal_time;
 		pthread_mutex_unlock(&table->meal_mutex);
-		if (time_since_meal > table->time_to_die)
+		if (time_since_meal >= table->time_to_die)
 		{
 			pthread_mutex_lock(&table->death_mutex);
 			table->simulation_end = 1;

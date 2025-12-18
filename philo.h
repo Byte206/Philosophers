@@ -6,7 +6,7 @@
 /*   By: gamorcil <gamorcil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 11:35:39 by gamorcil          #+#    #+#             */
-/*   Updated: 2025/12/17 22:55:53 by gamorcil         ###   ########.fr       */
+/*   Updated: 2025/12/18 09:43:41 by gamorcil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	philo_think(t_philosopher *philo);
 
 // Utils - Time
 long	get_current_time(void);
-void	precise_usleep(long microseconds, t_table *table);
+void	precise_usleep(long milliseconds, t_table *table);
 long	time_since_start(t_table *table);
 
 // Utils - Monitor
