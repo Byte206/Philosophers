@@ -6,7 +6,7 @@
 /*   By: gamorcil <gamorcil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 20:03:00 by gamorcil          #+#    #+#             */
-/*   Updated: 2025/12/17 22:55:53 by gamorcil         ###   ########.fr       */
+/*   Updated: 2025/12/18 10:04:05 by gamorcil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@ void	start_simulation(t_table *table)
 	pthread_join(table->monitor_thread, NULL);
 }
 
+static int	should_continue_eating(t_philosopher *philo)
+{
+	int	meals;
+
+	if (philo->table->target_meals == -1)
+		return (1);
+	pthread_mutex_lock(&philo->table->meal_mutex);
+	meals = philo->meals_count;
+	pthread_mutex_unlock(&philo->table->meal_mutex);
+	return (meals < philo->table->target_meals);
+}
+
 void	*philosopher_routine(void *arg)
 {
 	t_philosopher	*philo;
@@ -47,8 +59,14 @@ void	*philosopher_routine(void *arg)
 		precise_usleep(philo->table->time_to_eat / 2, philo->table);
 	while (!simulation_should_stop(philo->table))
 	{
-		if (simulation_should_stop(philo->table))
-			break ;
+		if (!should_continue_eating(philo))
+		{
+			pthread_mutex_lock(&philo->table->meal_mutex);
+			philo->last_meal_time = get_current_time();
+			pthread_mutex_unlock(&philo->table->meal_mutex);
+			usleep(1000);
+			continue ;
+		}
 		philo_eat(philo);
 		if (simulation_should_stop(philo->table))
 			break ;
@@ -56,8 +74,6 @@ void	*philosopher_routine(void *arg)
 		if (simulation_should_stop(philo->table))
 			break ;
 		philo_think(philo);
-		if (simulation_should_stop(philo->table))
-			break ;
 	}
 	return (NULL);
 }
