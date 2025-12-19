@@ -61,9 +61,6 @@ void	*philosopher_routine(void *arg)
 	{
 		if (!should_continue_eating(philo))
 		{
-			pthread_mutex_lock(&philo->table->meal_mutex);
-			philo->last_meal_time = get_current_time();
-			pthread_mutex_unlock(&philo->table->meal_mutex);
 			usleep(1000);
 			continue ;
 		}
@@ -89,7 +86,7 @@ void	*monitor_routine(void *arg)
 			break ;
 		if (check_all_ate_enough(table))
 			break ;
-		usleep(1000);
+		usleep(500);
 	}
 	return (NULL);
 }

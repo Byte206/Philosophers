@@ -40,8 +40,8 @@ void	precise_usleep(long milliseconds, t_table *table)
 		remaining = milliseconds - elapsed;
 		if (remaining <= 0)
 			break ;
-		if (remaining > 1)
-			usleep(500);
+		if (remaining > 5)
+			usleep(1000);
 		else
 			usleep(100);
 	}
