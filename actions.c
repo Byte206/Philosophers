@@ -17,6 +17,15 @@ static int	take_forks(t_philosopher *philo)
 	t_fork	*first;
 	t_fork	*second;
 
+	if (philo->table->number_of_philosophers == 1)
+	{
+		pthread_mutex_lock(&philo->left_fork->fork_mutex);
+		print_status(philo, "has taken a fork");
+		while (!simulation_should_stop(philo->table))
+			usleep(1000);
+		pthread_mutex_unlock(&philo->left_fork->fork_mutex);
+		return (0);
+	}
 	if (philo->left_fork->fork_id < philo->right_fork->fork_id)
 	{
 		first = philo->left_fork;
@@ -34,6 +43,11 @@ static int	take_forks(t_philosopher *philo)
 		return (0);
 	}
 	print_status(philo, "has taken a fork");
+	if (simulation_should_stop(philo->table))
+	{
+		pthread_mutex_unlock(&first->fork_mutex);
+		return (0);
+	}
 	pthread_mutex_lock(&second->fork_mutex);
 	print_status(philo, "has taken a fork");
 	return (1);
