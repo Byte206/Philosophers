@@ -106,9 +106,9 @@ void	philo_think(t_philosopher *philo)
 		think_time = philo->table->time_to_eat - philo->table->time_to_sleep;
 		if (think_time < 0)
 			think_time = 0;
-		if (think_time > 1)
-			think_time = 1;
+		if (think_time > MAX_THINK_TIME_MS)
+			think_time = MAX_THINK_TIME_MS;
 		if (think_time > 0)
-			usleep(think_time * 1000);
+			precise_usleep(think_time, philo->table);
 	}
 }

@@ -56,7 +56,7 @@ void	*philosopher_routine(void *arg)
 
 	philo = (t_philosopher *)arg;
 	if (philo->philosopher_id % 2 == 0)
-		usleep(philo->table->time_to_eat * 1000 * 0.5);
+		usleep((philo->table->time_to_eat * 1000) / 2);
 	while (!simulation_should_stop(philo->table))
 	{
 		if (!should_continue_eating(philo))
