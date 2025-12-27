@@ -98,17 +98,7 @@ void	philo_sleep(t_philosopher *philo)
 
 void	philo_think(t_philosopher *philo)
 {
-	long	think_time;
-
 	print_status(philo, "is thinking");
 	if (philo->table->number_of_philosophers % 2 != 0)
-	{
-		think_time = philo->table->time_to_eat - philo->table->time_to_sleep;
-		if (think_time < 0)
-			think_time = 0;
-		if (think_time > MAX_THINK_TIME_MS)
-			think_time = MAX_THINK_TIME_MS;
-		if (think_time > 0)
-			precise_usleep(think_time, philo->table);
-	}
+		usleep(100);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamorcil <gamorcil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: byte <byte@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 20:03:00 by gamorcil          #+#    #+#             */
-/*   Updated: 2025/12/18 10:04:05 by gamorcil         ###   ########.fr       */
+/*   Updated: 2025/12/27 18:05:20 by byte             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	*philosopher_routine(void *arg)
 
 	philo = (t_philosopher *)arg;
 	if (philo->philosopher_id % 2 == 0)
-		usleep((philo->table->time_to_eat * 1000) / 2);
+		usleep(1000);
 	while (!simulation_should_stop(philo->table))
 	{
 		if (!should_continue_eating(philo))
