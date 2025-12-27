@@ -49,6 +49,12 @@ static int	take_forks(t_philosopher *philo)
 		return (0);
 	}
 	pthread_mutex_lock(&second->fork_mutex);
+	if (simulation_should_stop(philo->table))
+	{
+		pthread_mutex_unlock(&second->fork_mutex);
+		pthread_mutex_unlock(&first->fork_mutex);
+		return (0);
+	}
 	print_status(philo, "has taken a fork");
 	return (1);
 }
@@ -73,10 +79,10 @@ void	philo_eat(t_philosopher *philo)
 		return ;
 	if (!take_forks(philo))
 		return ;
-	print_status(philo, "is eating");
 	pthread_mutex_lock(&philo->table->meal_mutex);
 	philo->last_meal_time = get_current_time();
 	pthread_mutex_unlock(&philo->table->meal_mutex);
+	print_status(philo, "is eating");
 	precise_usleep(philo->table->time_to_eat, philo->table);
 	pthread_mutex_lock(&philo->table->meal_mutex);
 	philo->meals_count++;
@@ -97,12 +103,11 @@ void	philo_think(t_philosopher *philo)
 	print_status(philo, "is thinking");
 	if (philo->table->number_of_philosophers % 2 != 0)
 	{
-		think_time = (philo->table->time_to_eat * 2)
-			- philo->table->time_to_sleep;
+		think_time = philo->table->time_to_eat - philo->table->time_to_sleep;
 		if (think_time < 0)
 			think_time = 0;
-		if (think_time > 600)
-			think_time = 200;
+		if (think_time > MAX_THINK_TIME_MS)
+			think_time = MAX_THINK_TIME_MS;
 		if (think_time > 0)
 			precise_usleep(think_time, philo->table);
 	}

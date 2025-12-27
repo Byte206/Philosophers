@@ -20,6 +20,10 @@
 # include <sys/time.h>
 # include <limits.h>
 
+/* ====== CONSTANTS ====== */
+
+# define MAX_THINK_TIME_MS 1
+
 /* ====== STRUCTURES ====== */
 
 typedef struct s_table	t_table;
