@@ -69,8 +69,6 @@ int	main(int argc, char **argv)
 		return (error_exit("Failed to initialize philosophers"));
 	}
 	start_simulation(&table);
-	printf("\n[TIEMPO TOTAL] %ld ms desde el inicio de la simulación\n",
-		time_since_start(&table));
 	cleanup_table(&table);
 	return (0);
 }
