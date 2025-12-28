@@ -12,59 +12,6 @@
 
 #include "philo.h"
 
-static int	take_forks(t_philosopher *philo)
-{
-	t_fork	*first;
-	t_fork	*second;
-
-	if (philo->table->number_of_philosophers == 1)
-	{
-		pthread_mutex_lock(&philo->left_fork->fork_mutex);
-		print_status(philo, "has taken a fork");
-		while (!simulation_should_stop(philo->table))
-			usleep(1000);
-		pthread_mutex_unlock(&philo->left_fork->fork_mutex);
-		return (0);
-	}
-	if (philo->left_fork->fork_id < philo->right_fork->fork_id)
-	{
-		first = philo->left_fork;
-		second = philo->right_fork;
-	}
-	else
-	{
-		first = philo->right_fork;
-		second = philo->left_fork;
-	}
-	pthread_mutex_lock(&first->fork_mutex);
-	if (simulation_should_stop(philo->table))
-	{
-		pthread_mutex_unlock(&first->fork_mutex);
-		return (0);
-	}
-	print_status(philo, "has taken a fork");
-	if (simulation_should_stop(philo->table))
-	{
-		pthread_mutex_unlock(&first->fork_mutex);
-		return (0);
-	}
-	pthread_mutex_lock(&second->fork_mutex);
-	if (simulation_should_stop(philo->table))
-	{
-		pthread_mutex_unlock(&second->fork_mutex);
-		pthread_mutex_unlock(&first->fork_mutex);
-		return (0);
-	}
-	print_status(philo, "has taken a fork");
-	return (1);
-}
-
-static void	release_forks(t_philosopher *philo)
-{
-	pthread_mutex_unlock(&philo->left_fork->fork_mutex);
-	pthread_mutex_unlock(&philo->right_fork->fork_mutex);
-}
-
 void	philo_eat(t_philosopher *philo)
 {
 	int	current_meals;

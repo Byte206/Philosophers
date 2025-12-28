@@ -80,6 +80,10 @@ void	philo_eat(t_philosopher *philo);
 void	philo_sleep(t_philosopher *philo);
 void	philo_think(t_philosopher *philo);
 
+// Forks
+int		take_forks(t_philosopher *philo);
+void	release_forks(t_philosopher *philo);
+
 // Utils - Time
 long	get_current_time(void);
 void	precise_usleep(long milliseconds, t_table *table);

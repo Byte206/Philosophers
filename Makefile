@@ -21,6 +21,7 @@ SRCS = philosophers.c \
        init.c \
        simulation.c \
        actions.c \
+       forks.c \
        monitor.c \
        utils.c
 
@@ -31,7 +32,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.c philosophers.h
+%.o: %.c philo.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
